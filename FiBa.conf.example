@@ -1,0 +1,15 @@
+[Archive]
+Name: full
+
+[Server]
+Name: BackupServer
+Url: server.wtf.fr
+Port: 22
+User: Michou
+Key: /tmp/poneyKey
+
+[Conf]
+Path: /tmp/ToSave /tmp/FileToSave
+
+[Web]
+Path: /tmp/FileToSave /home/poney/Python/SuperPoney.sqlite
