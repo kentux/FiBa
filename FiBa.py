@@ -4,9 +4,25 @@
 import os, ConfigParser, tarfile, socket, time, scp, paramiko, smtplib, sys
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from docopt import docopt
+
+help = """ FiBa
+
+Usage:
+    FiBa.py FILE
+
+Arguments:
+    FILE                    Fichier de configuration (Obligatoire)
+
+Options:
+    -h --help               Généré automatiquement
+
+"""
+
+arguments = docopt(help)
 
 config = ConfigParser.ConfigParser()
-config.read("FiBa.conf")
+config.read(arguments['FILE'])
 
 dirs_files = []
 
@@ -44,17 +60,17 @@ trans.put(archiveName)
 client.close()
 
 msg = MIMEMultipart('alternative')
-msg['Subject'] = "Backup " + archiveName + " ended !"
+msg['Subject'] = "Backup " + archiveName + " terminé !"
 msg['From'] = sender
 msg['To'] = receiver
 
-text = "Hi!\n Backup Ended."
+text = "Hi!\n Backup terminé."
 html = """\
 <html>
     <head></head>
     <body>
         <h1>Hi!</h1>
-        <h3>Backup Ended.</h3>
+        <h3>Backup terminé.</h3>
     </body>
 </html>"""
 
